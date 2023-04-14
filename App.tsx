@@ -7,32 +7,29 @@
 
 import { signal } from '@preact/signals-react';
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 
 const s = signal(0);
 setInterval(() => (s.value += 1), 1_000);
-
-// const useBindedSignal = <T,>(state: T) => {
-//   const s = useSignal(state);
-//   if (s.peek() !== state) {
-//     s.value = state;
-//   }
-
-//   return s;
-// };
 
 function App(): JSX.Element {
   console.log('rerender');
 
   return (
-    <Text
+    <View
       style={{
         flex: 1,
         justifyContent: 'center',
-        textAlign: 'center',
       }}>
-      {s}
-    </Text>
+      <Text
+        style={{
+          fontSize: 20,
+          color: 'white',
+          textAlign: 'center',
+        }}>
+        Preact signals counter: {s}
+      </Text>
+    </View>
   );
 }
 
